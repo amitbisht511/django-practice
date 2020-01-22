@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 setup(
     name="A Test Project",
@@ -9,5 +9,11 @@ setup(
     # package_dir={"": "src"},
     packages=find_packages(),
     scripts=["src/manage.py"],
-    install_requires=["django", "black", "isort", "flake8", "django-environ"],
+    install_requires=[
+        "django",
+        "django-environ",
+        "django-extensions",
+        "django-allauth",
+        "mysqlclient",
+    ],
 )

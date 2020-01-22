@@ -1,0 +1,7 @@
+-r requirements.txt
+django-debug-toolbar
+ipython
+jupyter
+black
+flake8
+isort

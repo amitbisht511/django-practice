@@ -1,11 +1,14 @@
 import environ
 
-ROOT_DIR = environ.Path(__file__) - 3  # practice/src/config/base.py - 3= practice
-BASE_DIR = environ.Path(__file__) - 2  # practice/src/config/base.py - 2 = src
+ROOT_DIR = (
+    environ.Path(__file__) - 4
+)  # practice/src/config/settings/base.py - 4= practice
+BASE_DIR = environ.Path(__file__) - 3  # practice/src/config/settings/base.py - 3 = src
 env = environ.Env()
-env.read_env(ROOT_DIR.Path(".env"))
 
-DEBUG = env.bool("DJANGO_DEBUG", False)
+env.read_env(str(ROOT_DIR.path(".env")))
+
+DEBUG = env.bool("DJANGO_DEBUG", default=False)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env.str(
@@ -21,13 +24,14 @@ DJANGO_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sites",
 ]
 
 THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-    "django-extensions",
+    "django_extensions",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS
@@ -55,6 +59,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "django.template.context_processors.request",
             ],
         },
     },
@@ -63,3 +68,34 @@ TEMPLATES = [
 WSGI_APPLICATION = "config.wsgi.application"
 
 DATABASES = {"default": env.db("DATABASE_URL")}
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+    },
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
+]
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+    # `allauth` specific authentication methods, such as login by e-mail
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+LANGUAGE_CODE = "en-us"
+
+TIME_ZONE = "UTC"
+
+USE_I18N = True
+
+USE_L10N = True
+
+USE_TZ = True
+
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.0/howto/static-files/
+
+STATIC_URL = "/static/"
+SITE_ID = 1
