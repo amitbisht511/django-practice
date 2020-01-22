@@ -1,6 +1,6 @@
-# flake8: noqa
-from .base import *
+from .base import *  # noqa
 
-INSTALLED_APPS += ["debug_toolbar"]
+INSTALLED_APPS += ["django.contrib.staticfiles", "debug_toolbar"]  # noqa: F405
+INTERNAL_IPS = ("127.0.0.1",)
 
-MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
+MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]  # noqa: F405

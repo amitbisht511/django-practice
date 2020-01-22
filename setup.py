@@ -11,6 +11,7 @@ setup(
     scripts=["src/manage.py"],
     install_requires=[
         "django",
+        "pillow",
         "django-environ",
         "django-extensions",
         "django-allauth",
