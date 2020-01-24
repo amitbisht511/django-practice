@@ -1,0 +1,12 @@
+.movie-block {
+  margin-bottom:3%;
+}
+.movie-block img {
+  text-align: center;
+  width:90%;
+  display: inline-block;
+  margin:auto;
+}
+.movie_title {
+  text-align:left;
+}

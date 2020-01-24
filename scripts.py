@@ -28,7 +28,6 @@ def detailpage(soup):
         yield soup
 
 
-# import mysqlclient
 domain = "https://www.imdb.com"
 list_page = requests.get(f"{domain}/chart/top/?ref_=nv_mv_250")
 
