@@ -6,7 +6,7 @@ ROOT_DIR = (
 BASE_DIR = environ.Path(__file__) - 3  # practice/src/config/settings/base.py - 3 = src
 env = environ.Env()
 
-env.read_env(str(ROOT_DIR.path(".env")))
+env.read_env(str(ROOT_DIR(".env")))
 
 DEBUG = env.bool("DJANGO_DEBUG", default=False)
 
@@ -30,6 +30,7 @@ THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "allauth.socialaccount.google",
     "django_extensions",
 ]
 
@@ -106,3 +107,16 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = str(BASE_DIR.path("media"))
 
 SITE_ID = 1
+
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = "5"
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': '123',
+            'secret': '456',
+            'key': ''
+        }
+    }
+}
