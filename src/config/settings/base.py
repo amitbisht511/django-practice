@@ -30,11 +30,14 @@ THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-    "allauth.socialaccount.google",
+    # "allauth.socialaccount.google",
     "django_extensions",
 ]
 
-LOCAL_APPS = ["apps.movies"]
+LOCAL_APPS = [
+    "apps.movies.apps.MoviesConfig",
+    "apps.users.apps.UsersConfig",
+]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -69,7 +72,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
-DATABASES = {"default": env.db("DATABASE_URL")}
+DATABASES = {
+    "default": env.db("DATABASE_URL", default=f'sqlite:///{ROOT_DIR("db.sqlite3")}')
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -112,11 +117,5 @@ ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = "5"
 SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'APP': {
-            'client_id': '123',
-            'secret': '456',
-            'key': ''
-        }
-    }
+    "google": {"APP": {"client_id": "123", "secret": "456", "key": ""}}
 }
