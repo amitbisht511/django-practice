@@ -9,7 +9,7 @@ asgiref==3.2.3
 attrs==19.3.0             # via black, jsonschema
 backcall==0.1.0           # via ipython
 black==19.10b0
-bleach==3.1.0             # via nbconvert
+bleach==3.1.1             # via nbconvert
 certifi==2019.11.28
 chardet==3.0.4
 click==7.0                # via black
